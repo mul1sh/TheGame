@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 
 import { PageContainer } from '../../components/Container';
-import { SetupDone } from '../../components/SetupDone';
-import { SetupHeader } from '../../components/SetupHeader';
-import { SetupPersonality } from '../../components/SetupPersonality';
-import { SetupProfession } from '../../components/SetupProfession';
+import { SetupDone } from '../../components/Setup/SetupDone';
+import { SetupHeader } from '../../components/Setup/SetupHeader';
+import { SetupPersonality } from '../../components/Setup/SetupPersonality';
+import { SetupProfession } from '../../components/Setup/SetupProfession';
 import {
   SetupContext,
   SetupContextProvider,

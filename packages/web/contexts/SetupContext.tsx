@@ -7,6 +7,8 @@ type SetupContextType = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setProgress: React.Dispatch<React.SetStateAction<number>>;
   numTotalSteps: number;
+  skills: string[];
+  setSkills: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const SetupContext = React.createContext<SetupContextType>({
@@ -16,6 +18,8 @@ export const SetupContext = React.createContext<SetupContextType>({
   setStep: () => undefined,
   setProgress: () => undefined,
   numTotalSteps: 0,
+  skills: [],
+  setSkills: () => undefined,
 });
 
 export const SetupContextProvider: React.FC = ({ children }) => {
@@ -23,7 +27,7 @@ export const SetupContextProvider: React.FC = ({ children }) => {
   const [progress, setProgress] = useState<number>(0.5);
   const numTotalSteps = 3;
 
-  const useProgress: SetupContextType['useProgress'] = (numProgressSteps) => {
+  const useProgress: SetupContextType['useProgress'] = numProgressSteps => {
     const [currentProgress, setCurrentProgress] = useState<number>(0);
 
     useEffect(() => {
@@ -33,16 +37,18 @@ export const SetupContextProvider: React.FC = ({ children }) => {
 
     const onNextPress = () => {
       if ((currentProgress + 1) % numProgressSteps === 0) {
-        setStep((_step) => (_step + 1) % numTotalSteps);
+        setStep(_step => (_step + 1) % numTotalSteps);
       } else {
         setCurrentProgress(
-          (_currentProgress) => (_currentProgress + 1) % numProgressSteps,
+          _currentProgress => (_currentProgress + 1) % numProgressSteps,
         );
       }
     };
 
     return [currentProgress, onNextPress];
   };
+
+  const [skills, setSkills] = useState<string[]>([]);
 
   return (
     <SetupContext.Provider
@@ -53,6 +59,8 @@ export const SetupContextProvider: React.FC = ({ children }) => {
         setStep,
         setProgress,
         numTotalSteps,
+        skills,
+        setSkills,
       }}
     >
       {children}

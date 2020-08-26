@@ -1,11 +1,11 @@
 import { Box, Flex, Grid, Image, ResponsiveText } from '@metafam/ds';
 import React, { useContext } from 'react';
 
-import { SetupContext } from '../contexts/SetupContext';
-import AvatarImage from '../public/images/avatar.png';
-import BackImage from '../public/images/Back.svg';
-import SkipImage from '../public/images/Skip.svg';
-import { FlexContainer } from './Container';
+import { SetupContext } from '../../contexts/SetupContext';
+import AvatarImage from '../../public/images/avatar.png';
+import BackImage from '../../public/images/Back.svg';
+import SkipImage from '../../public/images/Skip.svg';
+import { FlexContainer } from '../Container';
 
 export const SetupHeader: React.FC = () => {
   const { step, progress, setStep, numTotalSteps } = useContext(SetupContext);
@@ -15,7 +15,7 @@ export const SetupHeader: React.FC = () => {
         justify="flex-end"
         onClick={() => {
           if (step > 0) {
-            setStep((_step) => (_step - 1) % numTotalSteps);
+            setStep(_step => (_step - 1) % numTotalSteps);
           }
         }}
         cursor="pointer"
@@ -49,7 +49,7 @@ export const SetupHeader: React.FC = () => {
         justify="flex-end"
         onClick={() => {
           if ((step + 1) % numTotalSteps !== 0) {
-            setStep((_step) => (_step + 1) % numTotalSteps);
+            setStep(_step => (_step + 1) % numTotalSteps);
           }
         }}
         cursor="pointer"
