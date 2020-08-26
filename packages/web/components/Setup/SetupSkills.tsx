@@ -5,7 +5,7 @@ import SelectSearch from 'react-select-search/dist/cjs';
 import { SetupContext } from '../../contexts/SetupContext';
 import { FlexContainer } from '../Container';
 import { getSkills, getCategories } from '../../graphql/getSkills';
-import styles from './ExampleCard.module.css';
+import styles from './SetupSkills.module.css';
 
 const parseSkills = (allSkills, categories) => {
   let categoriesMap = categories.reduce(function(map, category) {
@@ -40,15 +40,16 @@ export const SetupSkills: React.FC = () => {
     }
     getOptions();
   }, []);
+  console.log(styles);
 
   return (
     <FlexContainer>
       <MetaHeading mb={10}>What are your superpowers?</MetaHeading>
 
-      <Flex height="20rem">
+      <Flex height="20rem" color="black" background="white">
         {options.length && (
           <SelectSearch
-            className="select-search select-search--multiple"
+            className={`${styles['select-search']} ${styles['select-search--multiple']}`}
             options={options}
             multiple
             search
